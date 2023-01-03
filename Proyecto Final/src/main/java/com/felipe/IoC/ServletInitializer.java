@@ -1,4 +1,4 @@
-package com.felipe.mvcdemo;
+package com.felipe.IoC;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
