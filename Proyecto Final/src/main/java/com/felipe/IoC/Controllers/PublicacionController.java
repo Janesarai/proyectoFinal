@@ -34,8 +34,8 @@ public class PublicacionController {
 
 
     public PublicacionController(PublicacionService publicacionService, UserService userService,
-                                 AnimalesService animalService, TipoAnimalService tipoAnimalService,
-                                 VacunaService vacunaService, PersonalidadService personalidadService) {
+            AnimalesService animalService, TipoAnimalService tipoAnimalService,
+            VacunaService vacunaService, PersonalidadService personalidadService) {
         this.publicacionService = publicacionService;
         this.userService = userService;
         this.animalService = animalService;
@@ -47,19 +47,20 @@ public class PublicacionController {
     // para mostrar publicacion get
     @GetMapping("/Publicacion")
     public String crearPublicacion(@ModelAttribute("publicacion") Publicacion publicacion){
-        return "publicacionver";
+        return "publicacionver.jsp";
     }
     //para mostrar crear por post
     @PostMapping("/Publicacion")
     public String crearPublicacionn(@Valid @ModelAttribute("publicacion") Publicacion publicacion,BindingResult result, HttpSession session){
         if (result.hasErrors()) {
-            return "publicacionver";
+            return "publicacionver.jsp";
         }
         Long id = (Long) session.getAttribute("userId");
         User user = userService.findById(id);
         publicacion.setUser(user);
-        publicacion.setTitulo(null);
-        publicacion.setDescripcion(null);
+        // publicacion.setTitulo(null);
+        // publicacion.setDescripcion(null);
+        publicacionService.save(publicacion);
         return "redirect:/home";
     }
     //para mostrar todas en lista
@@ -70,10 +71,35 @@ public class PublicacionController {
     //    return "home.jsp";
     //}
     //para borrar la publicacion
-    @GetMapping("/SecondChance/Publicacion/{id}/delete")
+    @GetMapping("/Publicacion/{id}/delete")
     public String deletePublic(@PathVariable("id")Long id){
         publicacionService.delete(id);
         return "redirect:/SecondChance";
+    }
+
+    //para crear animales get
+    @GetMapping("/Publicacion/animales")
+    public String animalPublic(@ModelAttribute("animales") Animal animal){
+    return "publicacionver.jsp";
+    }
+
+    //para crear animales post
+    @PostMapping("/Publicacion/animales")
+    public String animalPublica(@Valid @ModelAttribute("animales") Animal animal,BindingResult result, HttpSession session){
+        if (result.hasErrors()) {
+            return "publicacionver.jsp";
+        }
+        Long id = (Long) session.getAttribute("animalId");
+        Publicacion publicacion = publicacionService.findById(id);
+        publicacion.getId();
+        animal.setNombre_mascota(null);
+        animal.setEdad(null);
+        animal.setPersonalidad(null);
+        animal.setPublicacion(publicacion);
+        animal.setTipoDeAnimal(null);
+        animal.setTamano_mascota(null);
+        animal.setVacunas(null);
+        return "redirect:/home";
     }
 
     //@GetMapping("/home")

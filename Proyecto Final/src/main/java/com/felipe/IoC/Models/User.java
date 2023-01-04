@@ -52,9 +52,6 @@ public class User extends Base{
     @Transient
     private String passwordConfirm;
 
-    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Contacto contacto;
-
 
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Publicacion> publicaciones;
