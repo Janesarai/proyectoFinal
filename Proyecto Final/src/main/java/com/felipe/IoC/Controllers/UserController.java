@@ -54,12 +54,12 @@ public class UserController {
 
     @PostMapping("/loginpost")
     public String indexlogin(@RequestParam("email") String email,
-                             @RequestParam("password") String password, Model model, HttpSession session) {
+                            @RequestParam("password") String password, Model model, HttpSession session) {
         boolean authenticated = userService.authenticateUser(email, password);
         if (authenticated) {
             User u = userService.findByEmail(email);
             session.setAttribute("userId", u.getId());
-            return "redirect:/home";
+            return "redirect:/";
         } else {
             model.addAttribute("error", "porfavor intente otra vez");
             return "loginregister.jsp";

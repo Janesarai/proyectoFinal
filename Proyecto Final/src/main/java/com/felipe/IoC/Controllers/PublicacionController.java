@@ -45,12 +45,12 @@ public class PublicacionController {
     }
 
     // para mostrar publicacion get
-    @GetMapping("/Publicacion")
+    @GetMapping("/publicacion")
     public String crearPublicacion(@ModelAttribute("publicacion") Publicacion publicacion){
         return "publicacionver";
     }
-    //para mostrar crear por post
-    @PostMapping("/Publicacion")
+    //para crear por post
+    @PostMapping("/publicacion")
     public String crearPublicacionn(@Valid @ModelAttribute("publicacion") Publicacion publicacion,BindingResult result, HttpSession session){
         if (result.hasErrors()) {
             return "publicacionver";
@@ -58,8 +58,7 @@ public class PublicacionController {
         Long id = (Long) session.getAttribute("userId");
         User user = userService.findById(id);
         publicacion.setUser(user);
-        publicacion.setTitulo(null);
-        publicacion.setDescripcion(null);
+        publicacionService.save(publicacion);
         return "redirect:/home";
     }
     //para mostrar todas en lista
@@ -70,7 +69,7 @@ public class PublicacionController {
     //    return "home.jsp";
     //}
     //para borrar la publicacion
-    @GetMapping("/SecondChance/Publicacion/{id}/delete")
+    @GetMapping("/publicacion/{id}/delete")
     public String deletePublic(@PathVariable("id")Long id){
         publicacionService.delete(id);
         return "redirect:/SecondChance";
@@ -86,7 +85,7 @@ public class PublicacionController {
    //     return "home";
    // }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(@ModelAttribute ("user")User user, Model model){
         List<Animal> publicaciones = animalService.findAll();
         model.addAttribute("animalesItems", publicaciones);
