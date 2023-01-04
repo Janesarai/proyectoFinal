@@ -13,9 +13,9 @@
 <body>
     <div class="container-sm">
         <h1>Nueva Publicacion</h1>
-        <a href="/SecondChance/{id.nombre}/login" class="col-auto">Volver al home</a>
+        <a href="/" class="col-auto">Volver al home</a>
         <br>
-        <form:form action="SecondChance/Publicacion" method="post" modelAttribute="publicacion">
+        <form:form action="/Publicacion" method="post" modelAttribute="publicacion">
                 <p>
                     <form:label path="titulo"><Title></Title></form:label>
                     <form:errors path="titulo"/>
@@ -28,7 +28,7 @@
             </p>
 
             <input type="submit" value="submit" class="btn btn-primary"/>
-            <a href="/home" class="btn btn-primary">cancel</a>
+            <a href="/" class="btn btn-primary">cancel</a>
         </form:form>
         </div>
 </body>

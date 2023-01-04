@@ -61,6 +61,17 @@ public class PublicacionController {
         publicacionService.save(publicacion);
         return "redirect:/home";
     }
+
+    @PostMapping("/publicacion/new")
+    public String createPublicaaa(@Valid @ModelAttribute("publicacion") Publicacion publicacion, BindingResult result, HttpSession session){
+        if(result.hasErrors()){
+            return "publicacionver.jsp";
+        } else {
+            Long id = (Long) session.getAttribute("userId");
+            User user = userService.findById(id);
+            publicacionService.save(publicacion);
+            return "redirect:/";
+        }
     //para mostrar todas en lista
     //@GetMapping("/verPublicaciones")
     //public String verPublicaciones(@ModelAttribute("publicacion")Publicacion publicacion,Model model){
