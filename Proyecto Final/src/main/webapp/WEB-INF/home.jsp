@@ -17,8 +17,8 @@
 <body>
     <header class="cabecera">
         <img id=logo src="imagenes/Second_Chance.jpg" alt="Logo de Second Chance">
-        <button class="btn boton">Registrate</button>
-        <button class="btn boton">Iniciar sesión</button>
+        <a href="/iniciasesion/registrate">Iniciar sesion</a>
+        <a href="/iniciasesion/registrate">Registrarse</a>
     </header>
         <!--Carrusel-->
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
