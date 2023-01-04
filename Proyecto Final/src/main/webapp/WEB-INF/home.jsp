@@ -20,7 +20,9 @@
         <button class="btn boton">Registrate</button>
         <button class="btn boton">Iniciar sesión</button>
     </header>
-
+    <!-- <c:if test="${publicacion.user.id.equals(userId)}">
+        <a class="btn btn-success m-4" href="/Publicacion">Edit</a>
+    </c:if> -->
         <!--Carrusel-->
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
