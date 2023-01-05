@@ -24,24 +24,22 @@ public class PublicacionController {
     private final PublicacionService publicacionService;
     private final UserService userService;
 
-    private final AnimalesService animalService;
+    private final MascotaService animalService;
 
     private final TipoAnimalService tipoAnimalService;
 
     private final VacunaService vacunaService;
 
-    private final PersonalidadService personalidadService;
 
 
     public PublicacionController(PublicacionService publicacionService, UserService userService,
-                                 AnimalesService animalService, TipoAnimalService tipoAnimalService,
-                                 VacunaService vacunaService, PersonalidadService personalidadService) {
+                                 MascotaService animalService, TipoAnimalService tipoAnimalService,
+                                 VacunaService vacunaService) {
         this.publicacionService = publicacionService;
         this.userService = userService;
         this.animalService = animalService;
         this.tipoAnimalService = tipoAnimalService;
         this.vacunaService = vacunaService;
-        this.personalidadService = personalidadService;
     }
 
     // para mostrar publicacion get

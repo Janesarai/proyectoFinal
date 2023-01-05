@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface AnimalesRepository extends BaseRepository<Mascota>{
+public interface MascotaRepository extends BaseRepository<Mascota>{
 }

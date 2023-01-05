@@ -3,15 +3,15 @@ package com.felipe.IoC.Services;
 import org.springframework.stereotype.Service;
 
 import com.felipe.IoC.Models.Mascota;
-import com.felipe.IoC.Repositories.AnimalesRepository;
+import com.felipe.IoC.Repositories.MascotaRepository;
 import com.felipe.IoC.Repositories.BaseRepository;
 
 @Service
-public class AnimalesService extends BaseService<Mascota>{
+public class MascotaService extends BaseService<Mascota>{
 
-    private final AnimalesRepository animalesRepository;
+    private final MascotaRepository animalesRepository;
 
-    public AnimalesService(BaseRepository<Mascota> baseRepository, AnimalesRepository animalesRepository) {
+    public MascotaService(BaseRepository<Mascota> baseRepository, MascotaRepository animalesRepository) {
         super(baseRepository);
         this.animalesRepository = animalesRepository;
     }

@@ -46,7 +46,7 @@ public class User extends Base{
     private String email;
 
     @NotNull
-    private Integer numero_cel;
+    private Integer celular;
 
     @NotBlank
     @Size(min = 7)
