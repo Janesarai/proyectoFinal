@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -46,6 +47,8 @@ public class Mascota extends Base{
     @JoinColumn(name="publicacion_id")
     private Publicacion publicacion;
 
+    @OneToMany(mappedBy="mascota", fetch = FetchType.LAZY)
+    private List<Imagen> imagenes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="tipodeanimal_id")
@@ -61,6 +64,7 @@ public class Mascota extends Base{
         joinColumns = @JoinColumn(name = "animal_id"), 
         inverseJoinColumns = @JoinColumn(name = "vacunas_id")
     )
+
     private List<Vacuna> vacunas;
 
     }
