@@ -9,11 +9,11 @@ import com.felipe.IoC.Repositories.BaseRepository;
 @Service
 public class MascotaService extends BaseService<Mascota>{
 
-    private final MascotaRepository animalesRepository;
+    private final MascotaRepository mascotaRepository;
 
-    public MascotaService(BaseRepository<Mascota> baseRepository, MascotaRepository animalesRepository) {
+    public MascotaService(BaseRepository<Mascota> baseRepository, MascotaRepository mascotaRepository) {
         super(baseRepository);
-        this.animalesRepository = animalesRepository;
+        this.mascotaRepository = mascotaRepository;
     }
 
     
