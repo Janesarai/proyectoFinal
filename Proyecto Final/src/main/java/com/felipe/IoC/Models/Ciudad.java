@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Ciudad extends Base{
     
     @NotBlank
-    private String nombre_ciudad;
+    private String nombre;
 
     @OneToMany(mappedBy="ciudad", fetch = FetchType.LAZY)
     private List<Publicacion> publicacion;
