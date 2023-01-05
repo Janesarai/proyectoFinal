@@ -25,12 +25,12 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
                 <h2>Inicia sesión</h2>
 
                 <div class="input-group">
-                    <input  type="email" id="email" path="email" >
+                    <input  type="text" id="email" name="email" >
                     <label  for="email">Correo electrónico</label>
                 </div>
 
                 <div class="input-group">
-                    <input  type="password" id="password" path="password" >
+                    <input  type="password" id="password" name="password" >
                     <label  for="password">Contraseña</label>
                 </div>
 

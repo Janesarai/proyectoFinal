@@ -17,10 +17,9 @@
 <body>
     <header class="cabecera">
         <img id=logo src="imagenes/Second_Chance.jpg" alt="Logo de Second Chance">
-        <button class="btn boton">Registrate</button>
-        <button class="btn boton">Iniciar sesión</button>
+        <a href="/iniciasesion/registrate">Iniciar sesion</a>
+        <a href="/iniciasesion/registrate">Registrarse</a>
     </header>
-
         <!--Carrusel-->
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -131,10 +130,13 @@
                 </div>
             </div>
             
-            
-            
         </div>
         </c:forEach>
+
+        <c:if test="${publicacion.user.id.equals(userId)}">
+            <a class="btn btn-success m-4" href="/${publicacion}/">Crear publicacion</a>
+        </c:if>
+
     </div>
     </div>
 
