@@ -3,10 +3,11 @@ package com.felipe.IoC.Models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -41,12 +42,8 @@ public class User extends Base{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
 
-    @Column(unique = true)
     @Email(message = "error de formato")
     private String email;
-
-    @NotNull
-    private Integer numero_cel;
 
     @NotBlank
     @Size(min = 7)
@@ -55,12 +52,13 @@ public class User extends Base{
     @Transient
     private String passwordConfirm;
 
+    @OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private Contacto contacto;
+
 
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Publicacion> publicaciones;
-
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-    private List<Mascota> mascotas;
     
-
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<Formulario> formularios;
 }

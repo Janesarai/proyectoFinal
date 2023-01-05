@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,13 +16,15 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "regiones")
-public class Region extends Base {
+@Table(name = "personalidad")
+public class Personalidad extends Base{
     
-    @NotBlank
-    private String nombre_region;
 
-    @OneToMany(mappedBy="region", fetch = FetchType.LAZY)
-    private List<Ciudad> ciudades;
+    private String tipo_personalidad;
+
+    private String nivel_energia;
+
+    @OneToMany(mappedBy="personalidad", fetch = FetchType.LAZY)
+    private List<Animal> animales;
     
 }

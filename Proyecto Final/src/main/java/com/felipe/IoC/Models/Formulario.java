@@ -1,35 +1,38 @@
 package com.felipe.IoC.Models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name = "ciudades")
-public class Ciudad extends Base{
-    
-    @NotBlank
-    private String nombre_ciudad;
+@Table(name = "formularios")
+public class Formulario extends Base {
 
-    @OneToMany(mappedBy="ciudad", fetch = FetchType.LAZY)
-    private List<Publicacion> publicacion;
+    @NotBlank
+    @Size(min = 2)
+    private String pregunta;
+
+    @NotBlank
+    @Size(min = 2)
+    private String respuesta;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="region_id")
-    private Region region;
+    @JoinColumn(name="user_id")
+    private User user;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="publicaciones_id")
+    private Publicacion publicacion;
 
 }

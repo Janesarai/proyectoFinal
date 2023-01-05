@@ -1,25 +1,26 @@
 package com.felipe.IoC.Models;
 
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import javax.persistence.JoinColumn;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
+@NoArgsConstructor
 @Setter
 @Getter
-@NoArgsConstructor
 @Entity
 @Table(name = "publicacion")
 public class Publicacion extends Base{
@@ -32,10 +33,9 @@ public class Publicacion extends Base{
     @Size(message = "falta agregar una descripcion")
     private String descripcion;
 
-    private String urlCuestionario;
 
     @OneToOne(mappedBy="publicacion", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private Mascota mascota;
+    private Animal animales;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,5 +47,8 @@ public class Publicacion extends Base{
     @JoinColumn(name="ciudad_id")
     private Ciudad ciudad;
 
+
+    @OneToMany(mappedBy="publicacion", fetch = FetchType.LAZY)
+    private List<Formulario> formularios;
     
 }

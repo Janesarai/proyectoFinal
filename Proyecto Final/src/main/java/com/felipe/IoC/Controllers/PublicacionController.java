@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import com.felipe.IoC.Models.Mascota;
+import com.felipe.IoC.Models.Animal;
 import com.felipe.IoC.Services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,7 +98,7 @@ public class PublicacionController {
 
     @GetMapping("/")
     public String home(@ModelAttribute ("user")User user, Model model){
-        List<Mascota> publicaciones = animalService.findAll();
+        List<Animal> publicaciones = animalService.findAll();
         model.addAttribute("animalesItems", publicaciones);
         return "home.jsp";
     }

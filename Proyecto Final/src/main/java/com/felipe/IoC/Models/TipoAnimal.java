@@ -22,6 +22,6 @@ public class TipoAnimal extends Base{
     private String tipoDeAnimal;
 
     @OneToMany(mappedBy="tipoDeAnimal", fetch = FetchType.LAZY)
-    private List<Mascota> mascotas;
+    private List<Animal> animales;
 
 }
