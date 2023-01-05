@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Region extends Base {
     
     @NotBlank
-    private String nombre_region;
+    private String nombre;
 
     @OneToMany(mappedBy="region", fetch = FetchType.LAZY)
     private List<Ciudad> ciudades;
