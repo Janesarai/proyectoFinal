@@ -22,9 +22,10 @@ import com.felipe.IoC.Models.User;
 public class PublicacionController {
 
     private final PublicacionService publicacionService;
+
     private final UserService userService;
 
-    private final MascotaService animalService;
+    private final MascotaService mascotaService;
 
     private final TipoAnimalService tipoAnimalService;
 
@@ -32,73 +33,33 @@ public class PublicacionController {
 
 
 
-    public PublicacionController(PublicacionService publicacionService, UserService userService,
-                                 MascotaService animalService, TipoAnimalService tipoAnimalService,
-                                 VacunaService vacunaService) {
+    public PublicacionController(PublicacionService publicacionService){
         this.publicacionService = publicacionService;
-        this.userService = userService;
-        this.animalService = animalService;
-        this.tipoAnimalService = tipoAnimalService;
-        this.vacunaService = vacunaService;
     }
 
     // para mostrar publicacion get
     @GetMapping("/publicacion")
-    public String crearPublicacion(@ModelAttribute("publicacion") Publicacion publicacion){
-        return "publicacionver";
+    public String verPublicacion(@ModelAttribute("publicacion") Publicacion publicacion){
+        return "publicacionver.jsp";
     }
     //para crear por post
     @PostMapping("/publicacion")
     public String crearPublicacionn(@Valid @ModelAttribute("publicacion") Publicacion publicacion,BindingResult result, HttpSession session){
         if (result.hasErrors()) {
-            return "publicacionver";
+            return "publicacionver.jsp";
         }
-        Long id = (Long) session.getAttribute("userId");
-        User user = userService.findById(id);
+        Long id = (Long) session.getAttribute("publicacionId");
+        Mascota mascota= MascotaService.getId
         publicacion.setUser(user);
         publicacionService.save(publicacion);
         return "redirect:/home";
     }
 
-    // @PostMapping("/publicacion/new")
-    // public String createPublicaaa(@Valid @ModelAttribute("publicacion") Publicacion publicacion, BindingResult result, HttpSession session){
-    //     if(result.hasErrors()){
-    //         return "publicacionver.jsp";
-    //     } else {
-    //         Long id = (Long) session.getAttribute("userId");
-    //         User user = userService.findById(id);
-    //         publicacionService.save(publicacion);
-    //         return "redirect:/";
-    //     }
-    //para mostrar todas en lista
-    //@GetMapping("/verPublicaciones")
-    //public String verPublicaciones(@ModelAttribute("publicacion")Publicacion publicacion,Model model){
-    //    List<Publicacion> publicacionn = publicacionService.mostrarPublicaciones();
-    //    model.addAttribute("publicacion", publicacionn);
-    //    return "home.jsp";
-    //}
     //para borrar la publicacion
     @GetMapping("/publicacion/{id}/delete")
     public String deletePublic(@PathVariable("id")Long id){
         publicacionService.delete(id);
         return "redirect:/SecondChance";
-    }
-
-    //@GetMapping("/home")
-    //public String mostrarPublicacion(Model model, HttpSession session){
-    //    Long userId = (Long) session.getAttribute("userId");
-    //    User user = userService.findById(userId);
-   //     List<Animal> animales = animalService.findAll();
-   //     model.addAttribute("user", user);
-   //     model.addAttribute("animalesItems", animales);
-   //     return "home";
-   // }
-
-    @GetMapping("/")
-    public String home(@ModelAttribute ("user")User user, Model model){
-        List<Mascota> publicaciones = animalService.findAll();
-        model.addAttribute("animalesItems", publicaciones);
-        return "home.jsp";
     }
 
 }

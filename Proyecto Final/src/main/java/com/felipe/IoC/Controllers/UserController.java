@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.felipe.IoC.Models.User;
@@ -43,6 +44,13 @@ public class UserController {
         User u = userService.registerUser(user);
         session.setAttribute("userId", u.getId());
         return "redirect:/home";
+    }
+
+    @RequestMapping("/salir")
+    //para deslogearse
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 
