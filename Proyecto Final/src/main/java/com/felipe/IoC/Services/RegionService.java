@@ -18,13 +18,4 @@ public class RegionService extends BaseService<Region>{
         super(baseRepository);
         this.regionRepository = regionRepository;
     }
-
-    public Region mostrarPublicaciones(Long id){
-        Optional<Region> mostrar = regionRepository.findById(id);
-        if (mostrar.isPresent()) {
-            return mostrar.get();
-        } else {
-            return null;
-        }
-    }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import com.felipe.IoC.Models.Animal;
+import com.felipe.IoC.Models.Mascota;
 import com.felipe.IoC.Services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,45 +24,52 @@ public class PublicacionController {
     private final PublicacionService publicacionService;
     private final UserService userService;
 
-    private final AnimalesService animalService;
+    private final MascotaService animalService;
 
     private final TipoAnimalService tipoAnimalService;
 
     private final VacunaService vacunaService;
 
-    private final PersonalidadService personalidadService;
 
 
     public PublicacionController(PublicacionService publicacionService, UserService userService,
-            AnimalesService animalService, TipoAnimalService tipoAnimalService,
-            VacunaService vacunaService, PersonalidadService personalidadService) {
+                                 MascotaService animalService, TipoAnimalService tipoAnimalService,
+                                 VacunaService vacunaService) {
         this.publicacionService = publicacionService;
         this.userService = userService;
         this.animalService = animalService;
         this.tipoAnimalService = tipoAnimalService;
         this.vacunaService = vacunaService;
-        this.personalidadService = personalidadService;
     }
 
     // para mostrar publicacion get
-    @GetMapping("/Publicacion")
+    @GetMapping("/publicacion")
     public String crearPublicacion(@ModelAttribute("publicacion") Publicacion publicacion){
-        return "publicacionver.jsp";
+        return "publicacionver";
     }
-    //para mostrar crear por post
-    @PostMapping("/Publicacion")
+    //para crear por post
+    @PostMapping("/publicacion")
     public String crearPublicacionn(@Valid @ModelAttribute("publicacion") Publicacion publicacion,BindingResult result, HttpSession session){
         if (result.hasErrors()) {
-            return "publicacionver.jsp";
+            return "publicacionver";
         }
         Long id = (Long) session.getAttribute("userId");
         User user = userService.findById(id);
         publicacion.setUser(user);
-        // publicacion.setTitulo(null);
-        // publicacion.setDescripcion(null);
         publicacionService.save(publicacion);
         return "redirect:/home";
     }
+
+    // @PostMapping("/publicacion/new")
+    // public String createPublicaaa(@Valid @ModelAttribute("publicacion") Publicacion publicacion, BindingResult result, HttpSession session){
+    //     if(result.hasErrors()){
+    //         return "publicacionver.jsp";
+    //     } else {
+    //         Long id = (Long) session.getAttribute("userId");
+    //         User user = userService.findById(id);
+    //         publicacionService.save(publicacion);
+    //         return "redirect:/";
+    //     }
     //para mostrar todas en lista
     //@GetMapping("/verPublicaciones")
     //public String verPublicaciones(@ModelAttribute("publicacion")Publicacion publicacion,Model model){
@@ -71,35 +78,10 @@ public class PublicacionController {
     //    return "home.jsp";
     //}
     //para borrar la publicacion
-    @GetMapping("/Publicacion/{id}/delete")
+    @GetMapping("/publicacion/{id}/delete")
     public String deletePublic(@PathVariable("id")Long id){
         publicacionService.delete(id);
         return "redirect:/SecondChance";
-    }
-
-    //para crear animales get
-    @GetMapping("/Publicacion/animales")
-    public String animalPublic(@ModelAttribute("animales") Animal animal){
-    return "publicacionver.jsp";
-    }
-
-    //para crear animales post
-    @PostMapping("/Publicacion/animales")
-    public String animalPublica(@Valid @ModelAttribute("animales") Animal animal,BindingResult result, HttpSession session){
-        if (result.hasErrors()) {
-            return "publicacionver.jsp";
-        }
-        Long id = (Long) session.getAttribute("animalId");
-        Publicacion publicacion = publicacionService.findById(id);
-        publicacion.getId();
-        animal.setNombre_mascota(null);
-        animal.setEdad(null);
-        animal.setPersonalidad(null);
-        animal.setPublicacion(publicacion);
-        animal.setTipoDeAnimal(null);
-        animal.setTamano_mascota(null);
-        animal.setVacunas(null);
-        return "redirect:/home";
     }
 
     //@GetMapping("/home")
@@ -112,9 +94,9 @@ public class PublicacionController {
    //     return "home";
    // }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(@ModelAttribute ("user")User user, Model model){
-        List<Animal> publicaciones = animalService.findAll();
+        List<Mascota> publicaciones = animalService.findAll();
         model.addAttribute("animalesItems", publicaciones);
         return "home.jsp";
     }

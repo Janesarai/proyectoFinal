@@ -1,6 +1,5 @@
 package com.felipe.IoC.Models;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,41 +11,49 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
-@Table(name = "animales")
-public class Animal extends Base{
+@Table(name = "mascotas")
+public class Mascota extends Base{
 
     @NotBlank
     @Size(min = 2 )
-    private String nombre_mascota;
+    private String nombre;
 
     @NotBlank
-    private String tamano_mascota;
+    private String tamano;
 
-    @PastOrPresent
-    private Date edad;
+    private String edad;
+
+    private String sexo;
+
+    private String personalidad;
+
+    private String energia;
+
 
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="publicacion_id")
     private Publicacion publicacion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="personalidad_id")
-    private Personalidad personalidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="tipodeanimal_id")
     private TipoAnimal tipoDeAnimal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -56,14 +63,5 @@ public class Animal extends Base{
     )
     private List<Vacuna> vacunas;
 
-    public Animal() {
     }
 
-    public Animal(String nombre_mascota,String tamano_mascota,Date edad) {
-        this.nombre_mascota = nombre_mascota;
-        this.tamano_mascota = tamano_mascota;
-        this.edad = edad;
-    }
-
-
-}

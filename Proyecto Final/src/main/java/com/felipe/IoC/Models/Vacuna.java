@@ -29,6 +29,6 @@ public class Vacuna extends Base{
         joinColumns = @JoinColumn(name = "vacunas_id"), 
         inverseJoinColumns = @JoinColumn(name = "animal_id")
     )
-    private List<Animal> animales;
+    private List<Mascota> animales;
     
 }
