@@ -16,7 +16,4 @@ public class MascotaService extends BaseService<Mascota>{
         this.mascotaRepository = mascotaRepository;
     }
 
-    
-
-    
 }

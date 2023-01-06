@@ -13,9 +13,9 @@
 <body>
     <div class="container-sm">
         <h1>Nueva Publicacion</h1>
-        <a href="/" class="col-auto">Volver al home</a>
+        <a href="/home2" class="col-auto">Volver al home</a>
         <br>
-        <form:form action="/Publicacion" method="post" modelAttribute="publicacion">
+        <form:form action="/publicacion" method="post" modelAttribute="publicacion">
                 <p>
                     <form:label path="titulo"><Title></Title></form:label>
                     <form:errors path="titulo"/>
@@ -25,6 +25,15 @@
                     <form:label path="descripcion">descripcion</form:label>
                     <form:errors path="descripcion"/>
                     <form:input path="descripcion" class="form-control"/>
+            </p>
+            <p>
+                    <form:select path="mascota">
+                        <c:forEach items="${mascotas}" var="mascota" >
+                            <form:option value="${mascota.id}">
+                                <c:out value="${mascota.nomre}"/>
+                            </form:option>
+                        </c:forEach>
+                    </form:select>
             </p>
 
             <input type="submit" value="submit" class="btn btn-primary"/>

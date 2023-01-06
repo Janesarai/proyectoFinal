@@ -18,7 +18,9 @@
 
     <h1>Publicaciones</h1>
     <div>
-
+        <a href="/iniciasesion/registrate">login</a>
+        <a href="/iniciasesion/registrate">registro</a>
+        <a href="/publicacion">publicar</a>
         
     </div>
 </body>
