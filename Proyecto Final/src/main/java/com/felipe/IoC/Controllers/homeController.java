@@ -19,8 +19,8 @@ public class homeController {
         this.userService = userService;
     }
     
-    @GetMapping("/home2")
-    public String home2(){
+    @GetMapping("/principal") //GET Mostrar publicaciones
+    public String principal(){
         return "home2.jsp";
     }
 }
