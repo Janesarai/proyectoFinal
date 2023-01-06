@@ -70,4 +70,6 @@ public class PublicacionController{
         publicacionService.delete(id);
         return "redirect:/SecondChance";
     }
+
+    
 }
