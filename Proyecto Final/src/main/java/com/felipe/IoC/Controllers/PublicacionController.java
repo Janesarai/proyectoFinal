@@ -37,14 +37,16 @@ public class PublicacionController{
         return "publicacionver.jsp";
     }
     //para crear publicacion mascota por post
-    @PostMapping("/publucacion/nueva")
+    @PostMapping("/publicacion/nueva")
     public String crearPublicacion(@Valid @ModelAttribute("publicacion")Publicacion publicacion, BindingResult result, HttpSession session){
         if (result.hasErrors()) {
             return "publicacionver.jsp";
         }else{
-            Long mascotaId = (Long)session.getAttribute("mascotauId");
+            Long mascotaId = (Long)session.getAttribute("mascotaId");
             Mascota mascota = mascotaService.findById(mascotaId);
-            publicacion.setMascota(null);
+            publicacion.setDescripcion("descripcion");
+            publicacion.setTitulo("titulo");
+            publicacion.setMascota(mascota);
             publicacionService.save(publicacion);
             return "redirect:/";
         }

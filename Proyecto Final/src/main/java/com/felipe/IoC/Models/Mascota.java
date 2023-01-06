@@ -2,6 +2,7 @@ package com.felipe.IoC.Models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -43,8 +44,7 @@ public class Mascota extends Base{
     private String energia;
 
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="publicacion_id")
+    @OneToOne(mappedBy="mascota", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Publicacion publicacion;
 
     @OneToMany(mappedBy="mascota", fetch = FetchType.LAZY)

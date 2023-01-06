@@ -34,7 +34,8 @@ public class Publicacion extends Base{
 
     private String urlCuestionario;
 
-    @OneToOne(mappedBy="publicacion", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mascota_id")
     private Mascota mascota;
 
 
