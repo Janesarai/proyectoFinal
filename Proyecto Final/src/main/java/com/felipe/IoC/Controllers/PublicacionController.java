@@ -42,7 +42,7 @@ public class PublicacionController{
         return "publicacionver.jsp";
     }
     
-    //para crear publicacion mascota por post
+    //para crear publicacion  por post(muestra la mascota en lista)
     @PostMapping("/publicacion")
     public String crearPublicacion(@Valid @ModelAttribute("publicacion")Publicacion publicacion, BindingResult result, HttpSession session,Model model){
         if (result.hasErrors()) {

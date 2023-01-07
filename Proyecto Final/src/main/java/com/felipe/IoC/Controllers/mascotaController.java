@@ -1,15 +1,24 @@
 package com.felipe.IoC.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.felipe.IoC.Models.Mascota;
+import com.felipe.IoC.Services.MascotaService;
+import com.felipe.IoC.Services.PublicacionService;
+import com.felipe.IoC.Services.UserService;
 
+import antlr.collections.List;
 
+@Controller
+public class mascotaController{
+    private final PublicacionService publicacionService;
+    private final MascotaService mascotaService;
     private final UserService userService;
 
-    @GetMapping("/mis-mascotas")
     public mascotaController(PublicacionService publicacionService, MascotaService mascotaService, UserService userService){
         this.publicacionService = publicacionService;
         this.mascotaService = mascotaService;
@@ -22,19 +31,21 @@ import com.felipe.IoC.Models.Mascota;
         //Agregar
         //Modificar
         //Eliminar
+    }
 
-        @GetMapping("")
-        public String mascotasTodas(){ //GET (Mostrar todas las mascotas asociadas al usuario)
-            return "home2.jsp"; 
-        }
+     //GET (Mostrar todas las mascotas asociadas al usuario)
+        @GetMapping("/mis-mascotas")
+        //     return "home2.jsp"; 
+        // }
 
         @GetMapping("/ver/{id_mascota}") //GET (Mostrar una mascota en especifico)
-        public String visualizar(){
+        public String visualizarMascota(){
             return "home2.jsp";
         }
 
         @GetMapping("/agregar") //GET (Mostrar formulario de agregar)
-        public String agregar(){
+        public String formulAgregar(){
+
             return "home2.jsp";
         }
 
@@ -57,8 +68,7 @@ import com.felipe.IoC.Models.Mascota;
         public String visualizar(){
             return "home2.jsp";
         }
-
-}
+    }
 
 //para crear mascota por post
     @PostMapping("/publicacion")
