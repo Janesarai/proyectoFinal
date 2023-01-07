@@ -1,98 +1,137 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0;
+body {
+    overflow-x: hidden;
+    color: #505962;
 }
-#logo{
-    width: 500px;
-    margin-left: 250px;
-}
-.cabecera{
-    border: 15px solid #5dd2c3;
-    border-radius: 8px;
-    margin: 40px 20px 40px 20px;
-}
-.boton{
-    background: rgb(110, 226, 207) !important;
-    border-color: #5dd2c3 !important;
-    border-width: 5px !important;
-    padding: 20px !important;
-    margin-left: 80px;
-    width: 300px;
-    color: white !important;
-    font-size: 42px !important;
-}
-.d-block{
+
+/* fondo video */
+.video-background{
+    position: relative;
     width: 100%;
-    display: block;
+    min-width: 100vh;
+    background-color: rgba(0,0,0,0.2);
 }
-#carouselExampleControls{
-    border: 20px solid #5dd2c3;
-    border-radius: 10px;
-    width: 1000px;
-    margin-left: 400px;
+video{
+    top:0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
 }
-.carousel-item{
-    width: auto;
-    height: 500px;
-    max-height: 500px;
+/* fondo video */
+
+
+
+/* caption fondo video */
+.caption {
+    position: absolute;
+    top: 38%;
+    width: 100%;
+    color: white;
 }
-.contenedor{
-    margin-top: 50px;
-    display: inline-block !important;
+.caption h1{
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: .2rem;
+    text-shadow: .1rem .1rem .8rem black;
+    padding-bottom: 1rem;
 }
-.foto{
-    width: 350px !important;
-    height: 250px;   
-    margin-bottom: 10px;
-    border: 8px solid aqua;
-    border-radius: 5px;
+.caption h3 {
+    font-size: 2rem;
+    text-shadow: .1rem .1rem .5rem black;
+    padding-bottom: 1.6rem;
+}
+.btn-lg{
+    border-width: medium;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    padding: .6rem 1.3rem;
+    background-color: #1EBBA3
+}
+
+
+/* banner */
+#logo{
+    width: 10rem;
+}
+
+/* imagenes pie vide animales */
+.thumb{
+    position: relative;
+    left: 35%;
+    top: 30px;
+    bottom: 20px;
+    bottom: translateX(-50%);
+    display: flex;
+    letter-spacing: 50%;
+}
+
+.thumb li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    cursor: pointer;
+}
+.thumb li img{max-width: 80px;}
+
+/* cards */
+.card{
+    position: relative;
+    width: 320px;
+    height: 450px;
+    left: 30px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+.card .poster::before{
+content:'';position: absolute; bottom: -180%; width: 100%;height: 100%;background: linear-gradient(0deg,#1064a6 50%,transparent);transition: 0.5s;z-index: 1;}
+.card .poster{position: relative;overflow: hidden;}
+.card:hover .poster::before{bottom:0px;}
+.card:hover .poster img{transform: translateY(-50%);filter:blur(5px);}
+.card .poster img{width: 100%;transition: 0.5s;}
+
+
+start course section
+.col-md-8{
+    margin: 2rem auto 8rem;
+    padding-top: 2rem;
+}
+.col-md-8 h1{
+    font-size: 2.4rem;
+}
+.btn-secondary{
+    border-width: medium;
+    border-radius: 0;
+    padding: .6rem 1.2rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin: 1rem;
+    border-color: #1EBBA3;
+    background-color: #1EBBA3;
+    color: white;
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+    border-color: #189582;
+    background-color: #189582;
+    color: white;
+}
+
+@media (max-width:768px) {
+    .caption h1{
+        font-size: 1.4rem;
+        letter-spacing: .15rem;
+        padding-bottom: .5rem;
     }
-.publicacion{
-    margin-left: 70PX;
-    display: inline-block;
-    align-items: center;
-    border: 5px solid #6ee2cf;
-    border-radius: 10px;
-    margin-bottom: 50px;
-    padding: 10px;
-
-}
-.descripcion{
-    border: 8px solid rgb(247, 220, 231);
-    border-radius: 10px;
-    padding: 5px;
-
-}
-.cuadrado{
-    border: none;
-    background-color: #ffffff;
-}
-.navbar-nav{
-    margin-left: 140px !important;
-    background-color: aquamarine !important;
-}
-.divisiones{
-    border: 2px solid black;
-    padding: 20px;
-    width: 280px;
-}
-.dropdown{
-    width: 250px !important;
-    height: 100px;
-    display: inline-block;
-}
-.menus{
-    font-size: 23px !important;
-    background-color: #6ee2cf !important;
-}
-.pipeta{
-    display: inline-block;
-    padding: 10px !important;
-    margin-top: 10px;
-    margin-left: 100px ;
-}
-.caja{
-    border: 1px solid black;
+    .caption h3 {
+        font-size:1.1rem;
+        padding-bottom: 1.2rem;
+    }
+    .btn-lg{
+        font-size: 1rem;
+        padding: .5rem 1rem;
+    }
+    .col-md-8 h1{
+        font-size: 1.7rem;
+    }
 }
